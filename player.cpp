@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std ;
 
+#define ENTER_KEY int("\n")
+
 class Player{
 	int playerNumber ; 
 	int position ; 
@@ -52,9 +54,9 @@ class Player{
 		}
 
 		int  throwDice(){
-			cout<<"press T to throw"<<endl;
+			cout<< "[ Player"<<this->getPlayerNumber()<<" ] press enter to throw"<<endl;
 
-			const int t = int('t') ;
+			const int t = int('\n') ;
 			const int T = int('T') ; 
 			int userInput = cin.get();
 
@@ -64,9 +66,9 @@ class Player{
 					cout<<"throwing a Dice...."<<endl<<endl;
 					break;
 
-				case T:
-					cout<<"throwing a Dice...."<<endl<<endl;
-					break;
+				// case T:
+				// 	cout<<"throwing a Dice...."<<endl<<endl;
+				// 	break;
 
 				default:
 					cout<<"wrong key pressed"<<endl<<endl;
