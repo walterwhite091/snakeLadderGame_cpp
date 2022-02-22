@@ -40,12 +40,115 @@ class Player{
 			return false ;
 		}
 
-		
+		int getRandomNumber(){
+			const int MIN_VALUE = 1 ; 
+			const int MAX_VALUE = 6;
+
+			unsigned seed = time(0) ;
+			srand(seed) ; 
+
+			int number =  (rand() %(MAX_VALUE - MIN_VALUE +1 )) + MIN_VALUE ; 
+			return number ;
+		}
+
 		int  throwDice(){
-			int maxValue = 6 ;
-			int diceNo = 1 + ( rand()% maxValue ) ;
+			cout<<"press T to throw"<<endl;
+
+			const int t = int('t') ;
+			const int T = int('T') ; 
+			int userInput = cin.get();
+
+			
+			switch(userInput){
+				case t:
+					cout<<"throwing a Dice...."<<endl<<endl;
+					break;
+
+				case T:
+					cout<<"throwing a Dice...."<<endl<<endl;
+					break;
+
+				default:
+					cout<<"wrong key pressed"<<endl<<endl;
+					return throwDice();
+
+			}
+			
+
+			
+			int diceNo = getRandomNumber();
+
+			cout<<diceNo<<endl<<endl;
+			switch(diceNo){
+				case 1:
+					{
+						cout<<"|     |"<<endl;
+						cout<<"|  *  |"<<endl;
+						cout<<"|     |"<<endl;
+						break ;
+					}
+				case 2:
+				{		cout<<"|   * |"<<endl;
+						cout<<"|     |"<<endl;
+						cout<<"| *   |"<<endl;
+						break ;
+
+				}
+				case 3:
+				{
+						cout<<"|   * |"<<endl;
+						cout<<"|  *  |"<<endl;
+						cout<<"| *   |"<<endl;
+						break;
+				} 
+				case 4:
+				{
+						cout<<"| * * |"<<endl;
+						cout<<"|     |"<<endl;
+						cout<<"| * * |"<<endl;
+						break;
+				} case 5:
+				{
+						cout<<"| * * |"<<endl;
+						cout<<"|  *  |"<<endl;
+						cout<<"| * * |"<<endl;
+						break;
+				} case 6:
+				{
+						cout<<"| * * |"<<endl;
+						cout<<"| * * |"<<endl;
+						cout<<"| * * |"<<endl;
+						break;
+				} 
+
+				default:
+					cout<<"TRY AGAIN DICE MUST BE IN RANGE [1-6]"<<endl<<endl;
+
+			}
+
+
 			return diceNo ;
 		}
 	
 } ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
