@@ -6,7 +6,7 @@
 
 using namespace std ;
 
-#define ENTER_KEY int("\n")
+
 
 class Game{
 	int *cardBoard;
@@ -28,9 +28,9 @@ class Game{
 			playersList = new Player[this->noOfPlayers+1] ;  
 		
 			// set position of all to 0.
-			for(int player=1 ; player< this->noOfPlayers ; player++){
+			for(int player=1 ; player<= this->noOfPlayers ; player++){
 				Player playerObject(player) ;
-
+				// cout<<playerObject.getPlayerNumber()<<" "<<playerObject.getPlayerPosition()<<endl;
 				playersList[player] =playerObject ; 
 			}
 
@@ -58,9 +58,11 @@ class Game{
 		}
 
 		void displayCurrentState(){
-			for(int player=1 ; player<this->noOfPlayers ; player++ ){
+			
+			for(int player=1 ; player<=this->noOfPlayers ; player++ ){
 				cout<<">>> player-" << playersList[player].getPlayerNumber()<<" ---> "<<playersList[player].getPlayerPosition()<<endl;
 			}
+			cout<<endl<<endl;
 		}
 
 
@@ -100,7 +102,7 @@ class Game{
 
 
 
-		bool turn(Player player){
+		bool turn(Player &player){
 
 			int diceResult = player.throwDice() ; 
 			int currentPositiion = player.getPlayerPosition();
@@ -114,20 +116,21 @@ class Game{
 			}
 
 			if(snakes->isSnake(nextPosition)){
+				cout<<"---Snake baby @_@---"<<endl<<endl;
 				nextPosition = snakes->snakeBite(nextPosition) ; 
 
 			}
 			else if(ladders->isLadder(nextPosition)){
+				cout<<"---Ladder is here @_@---"<<endl<<endl;
 				nextPosition = ladders->rideLadder(nextPosition) ; 
 			}
 
-
 			player.setPlayerPosition(nextPosition);
-
+			
 			int anyWinner =false ;
 			if(player.isWinner(this->noOfBlocks)){
 				anyWinner = true ;
-				cout<<player.getPlayerPosition()<<" is the WINNER of game"<<endl ; 
+				cout<< endl<<endl<<"Player--"<<player.getPlayerNumber()<<" is the WINNER of game"<<endl ; 
 			}
 
 			return anyWinner; 
@@ -160,10 +163,16 @@ class Game{
 
 			bool searchingForWinner = false ;
 
-			while(searchingForWinner){
-			
+			while(!searchingForWinner){
+
 				for(int player =1 ;player <= noOfPlayers ; player++){
-					searchingForWinner= turn(playersList[player]) ;
+					searchingForWinner= this->turn( playersList[player] ) ;
+					this->displayCurrentState();
+
+					if(searchingForWinner)
+						break;
+					// printf("\033[2J"); //clear full
+  					// printf("\033[1;1H"); // point to first
 				}
 			
 				cout<<endl;
