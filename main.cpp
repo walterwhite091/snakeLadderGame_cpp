@@ -3,17 +3,9 @@
 using namespace std ;
 
 int main(){
-
-	#ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt" ,"w",stdout);
-	#endif
-		
-	// cout <<"Hello world";
-	Game game1;
-
-
+	int noOfPlayers = 2; 
+	Game game1(noOfPlayers);
 	game1.startGame();
-}
 
+}
 
